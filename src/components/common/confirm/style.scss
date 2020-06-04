@@ -1,0 +1,26 @@
+.confirm {
+  display: inline-block;
+  background-color: white;
+  border: 1px #d9d9d9 solid;
+  padding: 16px;
+  border-radius: 4px;
+  z-index: 2200;
+  &__header {
+    h6 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: normal;
+    }
+  }
+  &__actions {
+    button {
+      min-width: 65px;
+    }
+    button + button {
+      margin-left: 16px;
+    }
+  }
+  &__header + &__actions {
+    margin-top: 8px;
+  }
+}

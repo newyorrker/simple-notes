@@ -1,8 +1,16 @@
 <template>
   <div class="notes">
-    <note class="notes__item" />
+    <div class="notes__container row">
+      
+      <note v-for="(note, index) in list"
+        class="notes__item sg-col-xs-12 sg-col-sm-6 sg-col-md-4 sg-col-lg-3" 
+        :note="note" 
+        :tabIndex="index"
+        :key="note.Index" />
+
+    </div>
     <div class="notes__actions">
-      <button @click="createNewNote">Create</button>
+      <button-blue @click="createNewNote">Create</button-blue>
     </div>
   </div>
 </template>
@@ -11,24 +19,38 @@
   import Vue from 'vue'
 
   import note from './note/note.vue'
-  // import style from './style.module.scss'
+
+  import buttonBlue from '@/components/common/button/button-blue.vue'
+  // import confirm from '@/components/common/confirm/confirm.vue'
+
+  import { Note } from '@/types'
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  import style from './style.scss'
 
   export default Vue.extend({
     name: 'notes',
     components: {
-      note
+      note,
+      buttonBlue,
+      // confirm
     },
     props: {
-
+      
     },
     data() {
         return {
-            // style: style
+            style: style
         }
     },
     methods: {
       createNewNote() {
-        console.log('creating new note');
+        this.$router.push('/create/')
+      }
+    },
+    computed: {
+      list(): Note[] {
+        return this.$store.getters.notesForDisplay;
       }
     }
   })

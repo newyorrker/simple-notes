@@ -1,14 +1,18 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
 module.exports = {
     css: {
-        loaderOptions: {
-            css: {
-                localIdentName: '[local]-[hash:3]',
-                camelCase: 'only'
-            }
-        }
-    },
+		loaderOptions: {
+			css: {
+				modules: {
+					localIdentName: '[local]-[hash:3]'
+				},
+				localsConvention: 'camelCaseOnly'
+			}
+		},
+		requireModuleExtension: true
+	},
     devServer: {
         hot: true,
         port: 9900,

@@ -11,9 +11,14 @@ Vue.use(VueRouter)
     component: Main
   },
   {
-    path: '/edit',
+    path: '/edit/:note_id',
     name: 'Edit',
-    component: () => import('../views/Edit.vue')
+    component: () => import('../views/EditOrCreate.vue')
+  },
+  {
+    path: '/create',
+    name: 'Create',
+    component: () => import('../views/EditOrCreate.vue')
   }
 ]
 

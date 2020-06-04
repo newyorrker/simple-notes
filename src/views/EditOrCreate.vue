@@ -1,7 +1,7 @@
 <template>
   <div class="edit">
     <h1>Note edit page</h1>
-    <note-detail />
+    <note-detail :id="$route.params.note_id" />
   </div>
 </template>
 
@@ -12,7 +12,7 @@
   import noteDetail from '@/components/note-detail/note-detail.vue'
 
   export default Vue.extend({
-    name: 'Edit',
+    name: 'EditOrCreate',
     components: {
       noteDetail
     }

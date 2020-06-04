@@ -1,0 +1,48 @@
+.button-default {
+  background-color: transparent;
+  border: 0;
+  background-color: #4c4c4c;
+  padding: 8px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+// box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.12);
+
+.button-blue {
+  background-color: #1666CF;
+  &:hover {
+    background-color: #2177E8;
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
+  }
+  &:disabled {
+    background-color: #79a5df;
+    color: #ededed;
+    cursor: auto;
+  }
+}
+
+.button-red {
+  background-color: #EC3143;
+  &:hover {
+    background-color: #f14156;
+  }
+}
+
+.button-transparent {
+  background-color: white;
+  color: #1f1f1d;
+  box-shadow: 0 0 0 0.05  rem rgba(0,0,0,.1);
+  &:hover {
+    background-color: #f8f8f8;
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.3);
+  }
+}
