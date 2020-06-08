@@ -6,7 +6,6 @@
 
 <script lang="ts">
   import Vue from 'vue'
-  // import style from './style.module.scss'
   import todoItem from './item.vue'
 
   import { Todo } from '@/types'
@@ -18,11 +17,6 @@
     },
     props: {
       list: Array as () => Todo[]
-    },
-    data() {
-      return {
-      // style: style
-      }
     },
   })
 </script>
