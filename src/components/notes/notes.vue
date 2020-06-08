@@ -10,7 +10,7 @@
 
     </div>
     <div class="notes__actions">
-      <button-blue @click="createNewNote">Create</button-blue>
+      <button-blue @click="createNewNote">Создать заметку</button-blue>
     </div>
   </div>
 </template>
