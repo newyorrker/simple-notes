@@ -1,0 +1,6 @@
+version: "3.2"
+services:
+  rkarshiev_simple-notes:
+    build: .
+    ports:
+      - "9900:9900"
