@@ -1,6 +1,6 @@
 <template>
   <div class="edit">
-    <h1>Note edit page</h1>
+    <h1> {{ $route.params.note_id ? 'Редактирование' : 'Создание' }} заметки</h1>
     <note-detail :id="$route.params.note_id" />
   </div>
 </template>
