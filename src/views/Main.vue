@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h1>List of notes</h1>
+    <h1>Список заметок</h1>
     <notes />
   </div>
 </template>
