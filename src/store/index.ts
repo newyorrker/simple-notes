@@ -19,6 +19,7 @@ export default new Vuex.Store({
     addNote({ commit, state }, emptyNote: Note) {
       commit('setNotes', [...state.notes, ...[emptyNote]]);
     },
+    //todo: изменить фильтрацию на флаг
     deleteNote({ commit, state }, noteId: number) {
       commit('setNotes', state.notes.filter((item) => item.Id != noteId))
     },
