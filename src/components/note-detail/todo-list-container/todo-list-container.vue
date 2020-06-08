@@ -1,10 +1,10 @@
 <template>
   <div class="todo-list-container">
     <todo-list class="todo-list-container__list" :list="list && list.filter((item) => !item.Removed)" />
+      <!-- добавить -->
       <div class="todo-list-container__add">
         <button  @click="$emit('add')" type="button">+</button>
       </div>
-    <!-- добавить -->
   </div>
 </template>
 

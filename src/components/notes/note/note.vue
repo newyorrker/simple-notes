@@ -70,13 +70,22 @@
       this.dataService = new NoteDataService(this.$store);
     },
     methods: {
+      /**
+       * Переход на страницу редактирования заметки
+       */
       toEdit() {
         this.$router.push(`/edit/${this.note.Id}`)
       },
+      /**
+       * Подтверждение об удалении
+       */
       askForRemove(event: MouseEvent) {
         this.showConfirm = true;
         this.confirmToRight = isToRight(event, this.confirmWidth);
       },
+      /**
+       * Подтверждение и удаление заметки
+       */
       confirm() {
         this.dataService.DeleteNote(this.note);
         this.showConfirm = false;

@@ -37,9 +37,15 @@
       }
     },
     methods: {
+      /**
+       * Удаление todo
+       */
       deleteTodo() {
         this.item.Removed = true;
       },
+      /**
+       * Обработка клика на текст todo
+       */
       clickHandler() {
         if(this.item.Disabled) return;
 

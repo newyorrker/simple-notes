@@ -44,11 +44,17 @@
         }
     },
     methods: {
+      /**
+       * Переход на страницу создания заметки
+       */
       createNewNote() {
         this.$router.push('/create/')
       }
     },
     computed: {
+      /**
+       * Список заметок из store для показа
+       */
       list(): Note[] {
         return this.$store.getters.notesForDisplay;
       }
