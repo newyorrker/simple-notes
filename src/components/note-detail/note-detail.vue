@@ -123,6 +123,7 @@
 
       if(this.$route.name === 'Create') this.$store.dispatch('addNote', emptyNote);
 
+      //обработка мутаций для сохранения промежуточных состояний
       this.$store.subscribe((mutation) => {
         if (mutation.type !== 'setOriginNote') {
           this.history.done.push(mutation);
@@ -138,42 +139,55 @@
       
       //клонируем заметку для редактирования
       this.currentNote = cloneDeep(this.note);
+
+      //сохраняем исходное состояние заметки для отмены изменений
       this.originNote = cloneDeep(this.note);
     },
     beforeDestroy() {
       this.$store.dispatch('clearNotes');
     },
     methods: {
+      /**
+       * Обработка отмены
+       */
       discard() {
         this.showDiscardConfirm = false;
         this.currentNote = this.originNote;
       },
+      /**
+       * Обработка добавления todo
+       */
       addTodo() {
         const newTodo = {...emptyTodo};
+        const todoLength = this.currentNote.Todos.length;
 
-        if(this.currentNote.Todos && this.currentNote.Todos.length > 0) {
-          const lastTodo = this.currentNote.Todos[this.currentNote.Todos.length - 1];
+        if(this.currentNote.Todos && todoLength > 0) {
+          const lastTodo = this.currentNote.Todos[todoLength - 1];
           newTodo.Id = lastTodo.Id + 1;
         }
         else {
           newTodo.Id = 0;
         }
 
+        //создаем пустой список если Todos undefined или null
         if(!this.currentNote.Todos) {
           this.currentNote.Todos = [];
         }
         
         this.currentNote.Todos.push(newTodo);
       },
+      /**
+       * Обработка сохранения заметки
+       */
       saveNote(): void {        
         
         if(this.$route.name === 'Create') {
-          this.dataService.CreateNote(this.currentNote);
-
-          this.currentNote = cloneDeep(this.currentNote);
           
-          //переход к редактированию
-          this.$router.push(`/edit/${this.currentNote.Id}`);
+          this.dataService.CreateNote(this.currentNote);
+          
+          //переход к списку
+          this.$router.push('/');
+
         } else {
           this.dataService.UpdateNote(this.currentNote);
           //клонируем сохраненную заметку или заготовку
@@ -181,6 +195,9 @@
         }
         
       },
+      /**
+       * Обработка клика на заголовок заметки
+       */
       headerClick() {
         
         this.editText = true;
@@ -188,10 +205,12 @@
         this.$nextTick(() => {
           const textArea = this.$refs.textArea as HTMLElement;
           textArea.focus()
-        })
+        });
       },
+      /**
+       * Откат сохранения
+       */
       undo() {
-
         const last = this.history.done.pop();
 
         if(last) this.history.undone.push(last)
@@ -209,6 +228,9 @@
 
         this.currentNote = cloneDeep(this.note);
       },
+      /**
+       * Отмена отката
+       */
       redo() {
         const commit = this.history.undone.pop();
         this.history.newMutation = false;
@@ -231,6 +253,9 @@
       }
     },
     computed: {
+      /**
+       * Текст заголовка заметки
+       */
       headerText: {
         set(val: string) {
           if(this.currentNote) {
@@ -241,15 +266,27 @@
           return this.currentNote.Header || ''
         }
       },
+      /**
+       * Возможность повтора
+       */
       canRedo(): boolean {
         return this.history.undone.length > 0;
       },
+      /**
+       * Возможность отмены
+       */
       canUndo(): boolean {
         return this.history.done.length > 0;
       },
+      /**
+       * Заметка из стора
+       */
       note(): Note {
         return this.$store.getters.note(this.noteId) || {};
       },
+      /**
+       * Обертка над id заметки
+       */
       noteId(): number {
         return this.$route.name === 'Create' ? -1 : parseInt(this.id);
       }
