@@ -21,8 +21,7 @@ module.exports = {
         }
     },
     runtimeCompiler: true,
-    // outputDir: targetPath,
-    // publicPath: publicPath,
+    publicPath: './',
     configureWebpack: {
         resolve: {
             alias: {
