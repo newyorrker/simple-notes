@@ -21,7 +21,9 @@ module.exports = {
         }
     },
     runtimeCompiler: true,
-    publicPath: './',
+    publicPath: process.env.NODE_ENV === 'production'
+	? 'simple-notes'
+	: './',
     configureWebpack: {
         resolve: {
             alias: {
